@@ -1,0 +1,805 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ch07 VBA 與活頁簿 工作表 &#8212; My sample book</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Ch08 VBA 與儲存格" href="Ch08_VBA_%E8%88%87%E5%84%B2%E5%AD%98%E6%A0%BC.html" />
+    <link rel="prev" title="Ch06 Visual Basic 編輯器" href="Ch06_Visual_Basic_%E7%B7%A8%E8%BC%AF%E5%99%A8.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">My sample book</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch01_%E9%A0%90%E5%82%99%E9%96%8B%E5%A7%8B.html">
+   Ch01 預備開始
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch02_%E5%B0%87%E6%97%A5%E5%B8%B8%E5%B7%A5%E4%BD%9C%E4%BA%A4%E7%B5%A6%E5%B7%A8%E9%9B%86%E4%BE%86%E8%87%AA%E5%8B%95%E5%AE%8C%E6%88%90%E5%90%A7.html">
+   Ch02 將日常工作交給巨集來自動完成吧
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch03_%E4%BD%BF%E7%94%A8_Visual_Basic_%E7%B7%A8%E8%BC%AF%E5%99%A8%E7%B7%A8%E8%BC%AF%E5%B7%A8%E9%9B%86.html">
+   Ch03 使用 Visual Basic 編輯器編輯巨集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch04_%E4%BD%BF%E7%94%A8%E5%90%84%E7%A8%AE%E7%89%A9%E4%BB%B6%E5%9F%B7%E8%A1%8C%E5%B7%A8%E9%9B%86.html">
+   Ch04 使用各種物件執行巨集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch05_%E7%9E%AD%E8%A7%A3_VBA_%E8%AA%9E%E6%B3%95.html">
+   Ch05 瞭解 VBA 語法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch06_Visual_Basic_%E7%B7%A8%E8%BC%AF%E5%99%A8.html">
+   Ch06 Visual Basic 編輯器
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Ch07 VBA 與活頁簿 工作表
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch08_VBA_%E8%88%87%E5%84%B2%E5%AD%98%E6%A0%BC.html">
+   Ch08 VBA 與儲存格
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch09_VBA_%E8%88%87%E8%B3%87%E6%96%99%E5%BA%AB.html">
+   Ch09 VBA 與資料庫
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch10_%E8%AE%8A%E6%95%B8.html">
+   Ch10 變數
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch11_VBA_%E7%9A%84%E6%8E%A7%E5%88%B6%E5%8A%9F%E8%83%BD.html">
+   Ch11 VBA 的控制功能
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch12_%E5%BB%BA%E7%AB%8B%E5%B0%8D%E8%A9%B1%E5%9E%8B%E7%A8%8B%E5%BA%8F.html">
+   Ch12 建立對話型程序
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Ch07_VBA_與活頁簿_工作表.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FCh07_VBA_與活頁簿_工作表.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   07章-1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   範例1 建立新的活頁簿
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   範例2 開啟指定資料夾中的活頁簿
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   範例3 從預設資料夾中開啟活頁簿
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   範例4 關閉所有活頁簿
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   範例5 關閉使用中的活頁簿
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   範例6 關閉特定的活頁簿
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   範例7 關閉第幾個活頁簿
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   範例8 將活頁簿存檔後關閉
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   範例9 活頁簿關閉時不存檔
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   範例10 指定使用中的活頁簿
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   範例11 將活頁簿存檔
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   範例12 儲存活頁簿時另存新檔
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   07章-2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   範例13 插入新的工作表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   範例14 指定插入位及數量
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   範例15 指定使用中工作表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id18">
+   範例16 選取多個工作表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id19">
+   範例17 在同一個活頁簿中移動工作表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id20">
+   範例18 將工作表移到其他活頁簿中
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id21">
+   範例19 將工作表移到新建的活頁簿中
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id22">
+   範例20 在同一個活頁簿中複製工作表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id23">
+   範例21 刪除工作表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id24">
+   範例22 隱藏工作表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id25">
+   範例23 顯示工作表
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="ch07-vba">
+<h1>Ch07 VBA 與活頁簿 工作表<a class="headerlink" href="#ch07-vba" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>07章-1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>範例1 建立新的活頁簿<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------</span>
+<span class="s1">&#39;範例1 建立新的活頁簿</span>
+<span class="s1">&#39;-------------------</span>
+
+<span class="n">Sub</span> <span class="n">新增活頁簿</span><span class="p">()</span>
+    <span class="n">Workbooks</span><span class="o">.</span><span class="n">Add</span>
+<span class="n">End</span> <span class="n">Sub</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>範例2 開啟指定資料夾中的活頁簿<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;---------------------------------------------</span>
+<span class="s1">&#39;範例2 開啟指定資料夾中的活頁簿</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;(請任意變更磁碟代號來執行)</span>
+<span class="s1">&#39;---------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">開啟活頁簿</span><span class="p">()</span>
+    <span class="n">Workbooks</span><span class="o">.</span><span class="n">Open</span> <span class="n">Filename</span><span class="o">:=</span><span class="s2">&quot;C:\Excel2003VBA基礎篇\Dummy.xls&quot;</span>
+<span class="n">End</span> <span class="n">Sub</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>範例3 從預設資料夾中開啟活頁簿<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;----------------------------------------------------------------------------------------------</span>
+<span class="s1">&#39;範例3 從預設資料夾中開啟活頁簿</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;(請將「Excel2003基礎篇」資料夾設定為預設資料夾來執行)</span>
+<span class="s1">&#39;----------------------------------------------------------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">開啟活頁簿2</span><span class="p">()</span>
+    <span class="n">Workbooks</span><span class="o">.</span><span class="n">Open</span> <span class="n">Filename</span><span class="o">:=</span><span class="s2">&quot;Dummy.xls&quot;</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>範例4 關閉所有活頁簿<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------</span>
+<span class="s1">&#39;範例4 關閉所有活頁簿</span>
+<span class="s1">&#39;-------------------</span>
+
+<span class="n">Sub</span> <span class="n">關閉活頁簿</span><span class="p">()</span>
+    <span class="n">Workbooks</span><span class="o">.</span><span class="n">Close</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>範例5 關閉使用中的活頁簿<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------</span>
+<span class="s1">&#39;範例5 關閉使用中的活頁簿</span>
+<span class="s1">&#39;-----------------------</span>
+
+<span class="n">Sub</span> <span class="n">關閉活頁簿2</span><span class="p">()</span>
+    <span class="n">ActiveWorkbook</span><span class="o">.</span><span class="n">Close</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>範例6 關閉特定的活頁簿<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;--------------------------------------------</span>
+<span class="s1">&#39;範例6 關閉特定的活頁簿</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;(請開啟「Dummy.xls」後再執行)?????</span>
+<span class="s1">&#39;---------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">關閉活頁簿3</span><span class="p">()</span>
+    <span class="n">Workbooks</span><span class="p">(</span><span class="s2">&quot;Dummy.xls&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Close</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>範例7 關閉第幾個活頁簿<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------------------------</span>
+<span class="s1">&#39;範例7 關閉第幾個活頁簿</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;(請開啟兩個以上的活頁簿來執行)</span>
+<span class="s1">&#39;-----------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">關閉活頁簿4</span><span class="p">()</span>
+    <span class="n">Workbooks</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">Close</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Attribute</span> <span class="n">VB_Name</span> <span class="o">=</span> <span class="s2">&quot;Module2&quot;</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>範例8 將活頁簿存檔後關閉<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;------------------------------------------</span>
+<span class="s1">&#39;範例8 將活頁簿存檔後關閉</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;(請開啟「Dummy.xls」後再執行)</span>
+<span class="s1">&#39;------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">關閉活頁簿5</span><span class="p">()</span>
+    <span class="n">Workbooks</span><span class="p">(</span><span class="s2">&quot;Dummy.xls&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Close</span> <span class="n">SaveChanges</span><span class="o">:=</span><span class="kc">True</span> <span class="s1">&#39;指定引數的名稱</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>範例9 活頁簿關閉時不存檔<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;------------------------------------------</span>
+<span class="s1">&#39;範例9 活頁簿關閉時不存檔</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;(請開啟「Dummy.xls」後再執行)</span>
+<span class="s1">&#39;------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">關閉活頁簿6</span><span class="p">()</span>
+    <span class="n">Workbooks</span><span class="p">(</span><span class="s2">&quot;Dummy.xls&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Close</span> <span class="kc">False</span>              <span class="s1">&#39;標準引數</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>範例10 指定使用中的活頁簿<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;------------------------------------------</span>
+<span class="s1">&#39;範例10 指定使用中的活頁簿</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;(請開啟「Dummy.xls」後再執行)</span>
+<span class="s1">&#39;------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">指定活頁簿</span><span class="p">()</span>
+<span class="n">Attribute</span> <span class="n">指定活頁簿</span><span class="o">.</span><span class="n">VB_ProcData</span><span class="o">.</span><span class="n">VB_Invoke_Func</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="se">\n</span><span class="s2">14&quot;</span>
+    <span class="n">Workbooks</span><span class="p">(</span><span class="s2">&quot;Dummy.xls&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Activate</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>範例11 將活頁簿存檔<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;----------------------------------</span>
+<span class="s1">&#39;範例11 將活頁簿存檔</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;----------------------------------</span>
+ 
+<span class="n">Sub</span> <span class="n">活頁簿存檔</span><span class="p">()</span>
+    <span class="n">ActiveWorkbook</span><span class="o">.</span><span class="n">Save</span>             <span class="s1">&#39;儲存使用中活頁簿</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">活頁簿存檔2</span><span class="p">()</span>
+    <span class="n">Workbooks</span><span class="p">(</span><span class="s2">&quot;Dummy.xls&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Save</span>    <span class="s1">&#39;指定存檔名稱後儲存</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>範例12 儲存活頁簿時另存新檔<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;--------------------------------------------</span>
+<span class="s1">&#39;範例12 儲存活頁簿時另存新檔</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;---------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">儲存活頁簿3</span><span class="p">()</span>
+<span class="n">Attribute</span> <span class="n">儲存活頁簿3</span><span class="o">.</span><span class="n">VB_ProcData</span><span class="o">.</span><span class="n">VB_Invoke_Func</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="se">\n</span><span class="s2">14&quot;</span>
+    <span class="s1">&#39;指定儲存目標</span>
+    <span class="n">ActiveWorkbook</span><span class="o">.</span><span class="n">SaveAs</span> <span class="n">Filename</span><span class="o">:=</span><span class="s2">&quot;C:\Excel2003VBA基礎篇\Test.xls&quot;</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">儲存活頁簿4</span><span class="p">()</span>
+<span class="n">Attribute</span> <span class="n">儲存活頁簿4</span><span class="o">.</span><span class="n">VB_ProcData</span><span class="o">.</span><span class="n">VB_Invoke_Func</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="se">\n</span><span class="s2">14&quot;</span>
+    <span class="s1">&#39;存放到目前資料夾中</span>
+    <span class="n">ActiveWorkbook</span><span class="o">.</span><span class="n">SaveAs</span> <span class="n">Filename</span><span class="o">:=</span><span class="s2">&quot;Test.xls&quot;</span>
+<span class="n">End</span> <span class="n">Sub</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>07章-2<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id15">
+<h2>範例13 插入新的工作表<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------------</span>
+<span class="s1">&#39;範例13 插入新的工作表</span>
+<span class="s1">&#39;-------------------------</span>
+
+<span class="n">Sub</span> <span class="n">插入工作表</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="o">.</span><span class="n">Add</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>範例14 指定插入位及數量<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------------------------------</span>
+<span class="s1">&#39;範例14 指定插入位及數量</span>
+<span class="s1">&#39;-------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">插入工作表2</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="o">.</span><span class="n">Add</span> <span class="n">After</span><span class="o">:=</span><span class="n">Worksheets</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">Count</span><span class="o">:=</span><span class="mi">2</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h2>範例15 指定使用中工作表<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;----------------------------</span>
+<span class="s1">&#39;範例15 指定使用中工作表</span>
+<span class="s1">&#39;----------------------------</span>
+
+<span class="n">Sub</span> <span class="n">指定工作表</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Activate</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">指定工作表2</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h2>範例16 選取多個工作表<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;----------------------------------------</span>
+<span class="s1">&#39;範例16 選取多個工作表</span>
+<span class="s1">&#39;----------------------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">選取多個工作表</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="o">.</span><span class="n">Select</span>               <span class="s1">&#39;選取全部工作表</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">選取多個工作表2</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">Select</span>  <span class="s1">&#39;選取第1、3個工作表</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h2>範例17 在同一個活頁簿中移動工作表<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;----------------------------------</span>
+<span class="s1">&#39;範例17 在同一個活頁簿中移動工作表</span>
+<span class="s1">&#39;----------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">移動工作表1</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Move</span> <span class="n">After</span><span class="o">:=</span><span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet3&quot;</span><span class="p">)</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h2>範例18 將工作表移到其他活頁簿中<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------------------------</span>
+<span class="s1">&#39;範例18 將工作表移到其他活頁簿中</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;(請開啟「Dummy.xls」後再執行)</span>
+<span class="s1">&#39;-----------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">移動工作表2</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet4&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Move</span> <span class="n">_</span>
+        <span class="n">Before</span><span class="o">:=</span><span class="n">Workbooks</span><span class="p">(</span><span class="s2">&quot;Dummy.xls&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Sheets</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id21">
+<h2>範例19 將工作表移到新建的活頁簿中<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;----------------------------------</span>
+<span class="s1">&#39;範例19 將工作表移到新建的活頁簿中</span>
+<span class="s1">&#39;----------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">移動工作表3</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Move</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h2>範例20 在同一個活頁簿中複製工作表<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------</span>
+<span class="s1">&#39;範例20 在同一個活頁簿中複製工作表</span>
+<span class="s1">&#39;-----------------------</span>
+  
+<span class="n">Sub</span> <span class="n">複製工作表</span><span class="p">()</span>
+    <span class="s1">&#39;在同一個活頁簿中複製工作表</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Copy</span> <span class="n">After</span><span class="o">:=</span><span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet3&quot;</span><span class="p">)</span>
+
+    <span class="s1">&#39;將工作表複製到其他的活頁簿中</span>
+    <span class="s1">&#39;Worksheets(&quot;Sheet1&quot;).Copy Before:=Workbooks(&quot;Dummy.xls&quot;).Sheets(2)</span>
+
+    <span class="s1">&#39;將工作表複製到新建的活頁簿中</span>
+    <span class="s1">&#39;Worksheets(&quot;Sheet1&quot;).Copy</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h2>範例21 刪除工作表<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;---------------------</span>
+<span class="s1">&#39;範例21 刪除工作表</span>
+<span class="s1">&#39;---------------------</span>
+
+<span class="n">Sub</span> <span class="n">刪除工作表</span><span class="p">()</span>
+    <span class="n">Application</span><span class="o">.</span><span class="n">DisplayAlerts</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet6&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Delete</span>
+    <span class="n">Application</span><span class="o">.</span><span class="n">DisplayAlerts</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">刪除工作表2</span><span class="p">()</span>
+    <span class="n">Dim</span> <span class="n">myChart</span> <span class="n">As</span> <span class="n">Chart</span>
+    
+    <span class="s1">&#39;刪除所有圖表工作表</span>
+    <span class="n">For</span> <span class="n">Each</span> <span class="n">myChart</span> <span class="n">In</span> <span class="n">Charts</span>
+        <span class="n">myChart</span><span class="o">.</span><span class="n">Delete</span>
+    <span class="n">Next</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id24">
+<h2>範例22 隱藏工作表<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;------------------------</span>
+<span class="s1">&#39;範例22 隱藏工作表</span>
+<span class="s1">&#39;------------------------</span>
+
+<span class="n">Sub</span> <span class="n">隱藏工作表</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Visible</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">隱藏工作表2</span><span class="p">()</span>
+    <span class="s1">&#39;不是使用「顯示」指令</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Visible</span> <span class="o">=</span> <span class="n">xlVeryHidden</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id25">
+<h2>範例23 顯示工作表<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------</span>
+<span class="s1">&#39;範例23 顯示工作表</span>
+<span class="s1">&#39;-----------------------</span>
+
+<span class="n">Sub</span> <span class="n">顯示工作表</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Visible</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">End</span> <span class="n">Sub</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Ch06_Visual_Basic_%E7%B7%A8%E8%BC%AF%E5%99%A8.html" title="previous page">Ch06 Visual Basic 編輯器</a>
+    <a class='right-next' id="next-link" href="Ch08_VBA_%E8%88%87%E5%84%B2%E5%AD%98%E6%A0%BC.html" title="next page">Ch08 VBA 與儲存格</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book Community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

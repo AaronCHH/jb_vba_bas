@@ -1,0 +1,951 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ch08 VBA 與儲存格 &#8212; My sample book</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Ch09 VBA 與資料庫" href="Ch09_VBA_%E8%88%87%E8%B3%87%E6%96%99%E5%BA%AB.html" />
+    <link rel="prev" title="Ch07 VBA 與活頁簿 工作表" href="Ch07_VBA_%E8%88%87%E6%B4%BB%E9%A0%81%E7%B0%BF_%E5%B7%A5%E4%BD%9C%E8%A1%A8.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">My sample book</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch01_%E9%A0%90%E5%82%99%E9%96%8B%E5%A7%8B.html">
+   Ch01 預備開始
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch02_%E5%B0%87%E6%97%A5%E5%B8%B8%E5%B7%A5%E4%BD%9C%E4%BA%A4%E7%B5%A6%E5%B7%A8%E9%9B%86%E4%BE%86%E8%87%AA%E5%8B%95%E5%AE%8C%E6%88%90%E5%90%A7.html">
+   Ch02 將日常工作交給巨集來自動完成吧
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch03_%E4%BD%BF%E7%94%A8_Visual_Basic_%E7%B7%A8%E8%BC%AF%E5%99%A8%E7%B7%A8%E8%BC%AF%E5%B7%A8%E9%9B%86.html">
+   Ch03 使用 Visual Basic 編輯器編輯巨集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch04_%E4%BD%BF%E7%94%A8%E5%90%84%E7%A8%AE%E7%89%A9%E4%BB%B6%E5%9F%B7%E8%A1%8C%E5%B7%A8%E9%9B%86.html">
+   Ch04 使用各種物件執行巨集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch05_%E7%9E%AD%E8%A7%A3_VBA_%E8%AA%9E%E6%B3%95.html">
+   Ch05 瞭解 VBA 語法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch06_Visual_Basic_%E7%B7%A8%E8%BC%AF%E5%99%A8.html">
+   Ch06 Visual Basic 編輯器
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch07_VBA_%E8%88%87%E6%B4%BB%E9%A0%81%E7%B0%BF_%E5%B7%A5%E4%BD%9C%E8%A1%A8.html">
+   Ch07 VBA 與活頁簿 工作表
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Ch08 VBA 與儲存格
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch09_VBA_%E8%88%87%E8%B3%87%E6%96%99%E5%BA%AB.html">
+   Ch09 VBA 與資料庫
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch10_%E8%AE%8A%E6%95%B8.html">
+   Ch10 變數
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch11_VBA_%E7%9A%84%E6%8E%A7%E5%88%B6%E5%8A%9F%E8%83%BD.html">
+   Ch11 VBA 的控制功能
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ch12_%E5%BB%BA%E7%AB%8B%E5%B0%8D%E8%A9%B1%E5%9E%8B%E7%A8%8B%E5%BA%8F.html">
+   Ch12 建立對話型程序
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Ch08_VBA_與儲存格.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FCh08_VBA_與儲存格.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   08章-1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   範例24 選取單一儲存格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   範例25 選取連續的儲存格範圍
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   範例26 選取不連續的儲存格範圍
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   範例27 選取定義名稱的儲存格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   範例28 選取行/列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cells">
+   範例29 使用Cells屬性選取單一儲存格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   範例30 以編號選取儲存格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   範例31 使用Cells屬性選取所有儲存格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   範例32 使用Cells屬性選取儲存格範圍
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   範例33 將儲存格內的資料顯示於對話方塊中
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   範例34 在儲存格中輸入文字
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   範例35 輸入儲存格各種格式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   範例36 將儲存格的值輸入到其他儲存格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a1">
+   範例37 在儲存格中以A1格式輸入計算式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#r1c1">
+   範例38 在儲存格中以R1C1格式輸入計算式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   範例39 取得儲存格的值(計算式的結果)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   範例40 取得儲存格的計算式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   範例41 不經剪貼簿複製資料
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   範例42 清除儲存格的計算式與值
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id18">
+   範例43 清除儲存格的格式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id19">
+   範例44 清除儲存格資料的資料與格式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id20">
+   範例45 變更儲存格範圍的位置
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id21">
+   範例46 變更儲存格範圍的行位置
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id22">
+   範例47 變更儲存格範圍的列位置
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id23">
+   範例48 隱藏行
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id24">
+   範例49 取得儲存格範圍的行數
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id25">
+   範例50 對被選取儲存格整列填滿資料
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id26">
+   範例51 取得儲存格範圍的列數
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id27">
+   範例52 變更儲存格範圍的區域
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#offsetresize">
+   範例53 將Offset及Resize屬性合併使用
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id28">
+   範例54 將空白儲存格的背景色變更為藍色
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id29">
+   範例55 將含有計算式的儲存格背景色變更為藍色
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="ch08-vba">
+<h1>Ch08 VBA 與儲存格<a class="headerlink" href="#ch08-vba" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>08章-1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>範例24 選取單一儲存格<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Attribute</span> <span class="n">VB_Name</span> <span class="o">=</span> <span class="s2">&quot;Module1&quot;</span>
+<span class="s1">&#39;-------------------</span>
+<span class="s1">&#39;範例24 選取單一儲存格</span>
+<span class="s1">&#39;-------------------</span>
+
+<span class="n">Sub</span> <span class="n">RangeSel1</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;C5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+ 
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>範例25 選取連續的儲存格範圍<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------------</span>
+<span class="s1">&#39;範例25 選取連續的儲存格範圍</span>
+<span class="s1">&#39;-------------------------</span>
+<span class="n">Sub</span> <span class="n">RangeSel2</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;B2:D4&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+    <span class="s1">&#39;Range(&quot;B2&quot;, &quot;D4&quot;).Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>範例26 選取不連續的儲存格範圍<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------------</span>
+<span class="s1">&#39;範例26 選取不連續的儲存格範圍</span>
+<span class="s1">&#39;-------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">RangeSel3</span><span class="p">()</span>
+    <span class="s1">&#39;Range(&quot;B2,B4,D2,D4&quot;).Select</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;B2:D3,B5:D6&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>範例27 選取定義名稱的儲存格<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;----------------------------</span>
+<span class="s1">&#39;範例27 選取定義名稱的儲存格</span>
+<span class="s1">&#39;----------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">RangeSel4</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;營業額總計&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>範例28 選取行/列<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------</span>
+<span class="s1">&#39;範例28 選取行/列</span>
+<span class="s1">&#39;-------------------</span>
+  
+<span class="n">Sub</span> <span class="n">RangeSel5</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;1:1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+    <span class="s1">&#39;Range(&quot;A:A&quot;).Select</span>
+    <span class="s1">&#39;Range(&quot;1:3&quot;).Select</span>
+    <span class="s1">&#39;Range(&quot;A:C&quot;).Select</span>
+    <span class="s1">&#39;Range(&quot;1:3,6:6&quot;).Select</span>
+    <span class="s1">&#39;Range(&quot;A:C,F:F&quot;).Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="cells">
+<h2>範例29 使用Cells屬性選取單一儲存格<a class="headerlink" href="#cells" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------------------</span>
+<span class="s1">&#39;範例29 使用Cells屬性選取單一儲存格</span>
+<span class="s1">&#39;-----------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">CellsSel1</span><span class="p">()</span>
+    <span class="n">Cells</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">Activate</span>
+    <span class="s1">&#39;Cells(5, &quot;C&quot;).Activate</span>
+<span class="n">End</span> <span class="n">Sub</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>範例30 以編號選取儲存格<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------</span>
+<span class="s1">&#39;範例30 以編號選取儲存格</span>
+<span class="s1">&#39;-----------------------</span>
+  
+<span class="n">Sub</span> <span class="n">CellsSel2</span><span class="p">()</span>
+    <span class="n">Cells</span><span class="p">(</span><span class="mi">1027</span><span class="p">)</span><span class="o">.</span><span class="n">Activate</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>範例31 使用Cells屬性選取所有儲存格<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------------------</span>
+<span class="s1">&#39;範例31 使用Cells屬性選取所有儲存格</span>
+<span class="s1">&#39;-------------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">CellsSel3</span><span class="p">()</span>
+    <span class="n">Cells</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>範例32 使用Cells屬性選取儲存格範圍<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;---------------------------------</span>
+<span class="s1">&#39;範例32 使用Cells屬性選取儲存格範圍</span>
+<span class="s1">&#39;---------------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">CellsSel4</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="n">Cells</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">Cells</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>範例33 將儲存格內的資料顯示於對話方塊中<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Attribute</span> <span class="n">VB_Name</span> <span class="o">=</span> <span class="s2">&quot;Module2&quot;</span>
+<span class="s1">&#39;------------------------------------</span>
+<span class="s1">&#39;範例33 將儲存格內的資料顯示於對話方塊中</span>
+<span class="s1">&#39;------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">ValueRange1</span><span class="p">()</span>
+    <span class="n">MsgBox</span> <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>範例34 在儲存格中輸入文字<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;---------------------</span>
+<span class="s1">&#39;範例34 在儲存格中輸入文字</span>
+<span class="s1">&#39;---------------------</span>
+
+<span class="n">Sub</span> <span class="n">ValueRange2</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="s2">&quot;XYZ&quot;</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet7&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Cells</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="s2">&quot;XYZ&quot;</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet7&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="s2">&quot;B1:D5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="s2">&quot;XYZ&quot;</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>範例35 輸入儲存格各種格式<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;------------------------------------</span>
+<span class="s1">&#39;範例35 輸入儲存格各種格式</span>
+<span class="s1">&#39;------------------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">ValueRange3</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="mf">100.35</span>          <span class="s1">&#39;通用格式</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="s2">&quot;-1,573,500&quot;</span>    <span class="s1">&#39;千分位</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="s2">&quot;2003/7/29&quot;</span>     <span class="s1">&#39;日期</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A4&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="s2">&quot;10:25:30&quot;</span>      <span class="s1">&#39;時間</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="s2">&quot;&#39;0123&quot;</span>         <span class="s1">&#39;文字</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>範例36 將儲存格的值輸入到其他儲存格<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;--------------------------</span>
+<span class="s1">&#39;範例36 將儲存格的值輸入到其他儲存格</span>
+<span class="s1">&#39;--------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">ValueRange4</span><span class="p">()</span>
+    <span class="s1">&#39;Range(&quot;B10&quot;).Value = Range(&quot;A10&quot;).Value</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;B10&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A10&quot;</span><span class="p">)</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Attribute</span> <span class="n">VB_Name</span> <span class="o">=</span> <span class="s2">&quot;Module3&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a1">
+<h2>範例37 在儲存格中以A1格式輸入計算式<a class="headerlink" href="#a1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;--------------------------</span>
+<span class="s1">&#39;範例37 在儲存格中以A1格式輸入計算式</span>
+<span class="s1">&#39;--------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">FormulaRange1</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Formula</span> <span class="o">=</span> <span class="s2">&quot;=SUM(A1:A9)&quot;</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;B10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Formula</span> <span class="o">=</span> <span class="s2">&quot;=AVERAGE(B1:B9)&quot;</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;C10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Formula</span> <span class="o">=</span> <span class="s2">&quot;=MAX(C1:C9)&quot;</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;D10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Formula</span> <span class="o">=</span> <span class="s2">&quot;=MIN(D1:D9)&quot;</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="r1c1">
+<h2>範例38 在儲存格中以R1C1格式輸入計算式<a class="headerlink" href="#r1c1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------------</span>
+<span class="s1">&#39;範例38 在儲存格中以R1C1格式輸入計算式</span>
+<span class="s1">&#39;-----------------------------</span>
+
+<span class="n">Sub</span> <span class="n">FormulaRange2</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="s2">&quot;E1:E10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">FormulaR1C1</span> <span class="o">=</span> <span class="s2">&quot;=RC[-2]+RC[-1]&quot;</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>範例39 取得儲存格的值(計算式的結果)<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------------</span>
+<span class="s1">&#39;範例39 取得儲存格的值(計算式的結果)</span>
+<span class="s1">&#39;-----------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">GetValue</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;F1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;E1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Value</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>範例40 取得儲存格的計算式<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------</span>
+<span class="s1">&#39;範例40 取得儲存格的計算式</span>
+<span class="s1">&#39;-------------------</span>
+  
+<span class="n">Sub</span> <span class="n">GetFormula</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;F1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Formula</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;E1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Formula</span>
+    <span class="s1">&#39;Range(&quot;F1&quot;).FormulaR1C1 = Range(&quot;E1&quot;).FormulaR1C1</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+
+<span class="c1">## 08章-2</span>
+
+<span class="n">Attribute</span> <span class="n">VB_Name</span> <span class="o">=</span> <span class="s2">&quot;Module1&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>範例41 不經剪貼簿複製資料<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;------------------------------------------</span>
+<span class="s1">&#39;範例41 不經剪貼簿複製資料</span>
+<span class="s1">&#39;------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">CopyData</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A1:B10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Copy</span> <span class="n">_</span>
+        <span class="n">Destination</span><span class="o">:=</span><span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">)</span>
+<span class="n">End</span> <span class="n">Sub</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h2>範例42 清除儲存格的計算式與值<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------------</span>
+<span class="s1">&#39;範例42 清除儲存格的計算式與值</span>
+<span class="s1">&#39;-------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">ClearRange1</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+    <span class="n">ActiveCell</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">End</span> <span class="n">Sub</span>
+ 
+<span class="n">Sub</span> <span class="n">ClearRange2</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A1:D5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+    <span class="n">Selection</span><span class="o">.</span><span class="n">ClearContents</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h2>範例43 清除儲存格的格式<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;---------------------</span>
+<span class="s1">&#39;範例43 清除儲存格的格式</span>
+<span class="s1">&#39;---------------------</span>
+
+<span class="n">Sub</span> <span class="n">ClearRange3</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A10:D12&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ClearFormats</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h2>範例44 清除儲存格資料的資料與格式<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;----------------------------</span>
+<span class="s1">&#39;範例44 清除儲存格資料的資料與格式</span>
+<span class="s1">&#39;----------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">ClearRange4</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A10:D12&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Clear</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+
+<span class="c1">## 08章-3</span>
+
+<span class="n">Attribute</span> <span class="n">VB_Name</span> <span class="o">=</span> <span class="s2">&quot;Module1&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h2>範例45 變更儲存格範圍的位置<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;------------------------------------</span>
+<span class="s1">&#39;範例45 變更儲存格範圍的位置</span>
+<span class="s1">&#39;------------------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">OffRange1</span><span class="p">()</span>
+    <span class="n">Selection</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id21">
+<h2>範例46 變更儲存格範圍的行位置<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------------</span>
+<span class="s1">&#39;範例46 變更儲存格範圍的行位置</span>
+<span class="s1">&#39;-----------------------------</span>
+  
+<span class="n">Sub</span> <span class="n">OffRange2</span><span class="p">()</span>
+    <span class="s1">&#39;Selection.Offset(2).Select</span>
+    <span class="n">Selection</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h2>範例47 變更儲存格範圍的列位置<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------------</span>
+<span class="s1">&#39;範例47 變更儲存格範圍的列位置</span>
+<span class="s1">&#39;-----------------------------</span>
+
+<span class="n">Sub</span> <span class="n">OffRange3</span><span class="p">()</span>
+    <span class="s1">&#39;Selection.Offset(0, -1).Select</span>
+    <span class="n">Selection</span><span class="o">.</span><span class="n">Offset</span><span class="p">(,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h2>範例48 隱藏行<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;----------------</span>
+<span class="s1">&#39;範例48 隱藏行</span>
+<span class="s1">&#39;----------------</span>
+ 
+<span class="n">Sub</span> <span class="n">HideRows</span><span class="p">()</span>
+    <span class="n">Worksheets</span><span class="p">(</span><span class="s2">&quot;Sheet2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Rows</span><span class="p">(</span><span class="s2">&quot;5:7&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Hidden</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id24">
+<h2>範例49 取得儲存格範圍的行數<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;------------------------------------------</span>
+<span class="s1">&#39;範例49 取得儲存格範圍的行數</span>
+<span class="s1">&#39;</span>
+<span class="s1">&#39;(顯示第5行到第7行後再執行)</span>
+<span class="s1">&#39;------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">CountRows</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;B5:D7&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+    <span class="n">MsgBox</span> <span class="n">Selection</span><span class="o">.</span><span class="n">Rows</span><span class="o">.</span><span class="n">Count</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id25">
+<h2>範例50 對被選取儲存格整列填滿資料<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;--------------------------------</span>
+<span class="s1">&#39;範例50 對被選取儲存格整列填滿資料</span>
+<span class="s1">&#39;--------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">ValueRows2</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;B5:D7&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+    <span class="n">Selection</span><span class="o">.</span><span class="n">EntireRow</span><span class="o">.</span><span class="n">Value</span> <span class="o">=</span> <span class="s2">&quot;VBA&quot;</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id26">
+<h2>範例51 取得儲存格範圍的列數<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-----------------------------------</span>
+<span class="s1">&#39;範例51 取得儲存格範圍的列數</span>
+<span class="s1">&#39;-----------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">CountColumns</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;B2:C5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+    <span class="n">MsgBox</span> <span class="n">Selection</span><span class="o">.</span><span class="n">Columns</span><span class="o">.</span><span class="n">Count</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id27">
+<h2>範例52 變更儲存格範圍的區域<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;----------------------------</span>
+<span class="s1">&#39;範例52 變更儲存格範圍的區域</span>
+<span class="s1">&#39;----------------------------</span>
+
+<span class="n">Sub</span> <span class="n">ResizeRange1</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;B2:C4&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+    <span class="n">MsgBox</span> <span class="s2">&quot;變更儲存格範圍的區域&quot;</span>
+    <span class="n">Selection</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">Selection</span><span class="o">.</span><span class="n">Rows</span><span class="o">.</span><span class="n">Count</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Selection</span><span class="o">.</span><span class="n">Columns</span><span class="o">.</span><span class="n">Count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="offsetresize">
+<h2>範例53 將Offset及Resize屬性合併使用<a class="headerlink" href="#offsetresize" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;------------------------------------------</span>
+<span class="s1">&#39;範例53 將Offset及Resize屬性合併使用</span>
+<span class="s1">&#39;------------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">ResizeRange2</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;B2:C4&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+    <span class="n">MsgBox</span> <span class="s2">&quot;變更儲存格範圍的區域&quot;</span>
+    <span class="n">Selection</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">Resize</span><span class="p">(,</span> <span class="n">Selection</span><span class="o">.</span><span class="n">Columns</span><span class="o">.</span><span class="n">Count</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span>
+<span class="n">End</span> <span class="n">Sub</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id28">
+<h2>範例54 將空白儲存格的背景色變更為藍色<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;------------------------</span>
+<span class="s1">&#39;範例54 將空白儲存格的背景色變更為藍色</span>
+<span class="s1">&#39;------------------------</span>
+
+<span class="n">Sub</span> <span class="n">BlankBlue</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CurrentRegion</span><span class="o">.</span><span class="n">SpecialCells</span><span class="p">(</span><span class="n">xlCellTypeBlanks</span><span class="p">)</span><span class="o">.</span> <span class="n">_</span>
+        <span class="n">Interior</span><span class="o">.</span><span class="n">ColorIndex</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="id29">
+<h2>範例55 將含有計算式的儲存格背景色變更為藍色<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-------------------------------------</span>
+<span class="s1">&#39;範例55 將含有計算式的儲存格背景色變更為藍色</span>
+<span class="s1">&#39;-------------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">FormulaBlue</span><span class="p">()</span>
+    <span class="n">Cells</span><span class="o">.</span><span class="n">SpecialCells</span><span class="p">(</span><span class="n">xlCellTypeFormulas</span><span class="p">)</span><span class="o">.</span> <span class="n">_</span>
+        <span class="n">Interior</span><span class="o">.</span><span class="n">ColorIndex</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+
+<span class="s1">&#39;----------------------------------</span>
+<span class="s1">&#39;還原儲存格A1到D10背景色的程序</span>
+<span class="s1">&#39;----------------------------------</span>
+
+<span class="n">Sub</span> <span class="n">CellBackClear</span><span class="p">()</span>
+    <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;A1:D10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Interior</span><span class="o">.</span><span class="n">ColorIndex</span> <span class="o">=</span> <span class="n">xlNone</span>
+<span class="n">End</span> <span class="n">Sub</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Ch07_VBA_%E8%88%87%E6%B4%BB%E9%A0%81%E7%B0%BF_%E5%B7%A5%E4%BD%9C%E8%A1%A8.html" title="previous page">Ch07 VBA 與活頁簿 工作表</a>
+    <a class='right-next' id="next-link" href="Ch09_VBA_%E8%88%87%E8%B3%87%E6%96%99%E5%BA%AB.html" title="next page">Ch09 VBA 與資料庫</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book Community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
